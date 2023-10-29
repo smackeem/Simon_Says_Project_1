@@ -30,7 +30,15 @@ const gameMessageEl = document.querySelector('#game-messsage');
 const gameRulesEl = document.querySelector('#game-rules');
 
   /*----- event listeners -----*/
-
+gameStateBtnEls.forEach(function(btn){
+    console.log(btn)
+    if(btn.value === "start"){
+        btn.addEventListener('click', startGame);
+    }
+    if(btn.value === "reset"){
+        btn.addEventListener('click', resetGame);
+    }
+});
 
   /*----- functions -----*/
 
@@ -54,3 +62,10 @@ const gameRulesEl = document.querySelector('#game-rules');
     console.log('rendering');
   }
 
+  function startGame(){
+    console.log('Game About to begin')
+  }
+
+  function resetGame(){
+    console.log('Game got reset');
+  }

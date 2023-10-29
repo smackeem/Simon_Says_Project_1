@@ -54,6 +54,10 @@ body {
     justify-content: left;
 }
 
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
 /* Button Styling */
 .simon-button { 
     padding: 30px;
