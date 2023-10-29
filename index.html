@@ -9,23 +9,30 @@
   </head>
   <body>
     <div class="main-grid-container">
+
       <div class="title-container flex-center">
         <h1 class="game-title">SIMON SAYS</h1>
       </div>
       <div class="start-container flex-center">
-        <p>START</p>
+        <button id="start-button">START</button>
+        <button id="restart-button">RESTART</button>
       </div>
       <div class="display-messages-container flex-center">
-        <p>GAMEOVER</p>
+        <p id="game-messsage">GAMEOVER</p>
       </div>
       <div class="game-container flex-center">
-        <p>GAME</p>
+        <div id="game-buttons">
+            <button id="green" class="simon-button green-button"></button>
+            <button id="blue" class="simon-button blue-button"></button>
+            <button id="red" class="simon-button red-button"></button>
+            <button id="yellow" class="simon-button yellow-button"></button>
+        </div>
       </div>
       <div class="rules-container flex-center">
-        <p>RULES</p>
+        <p id="game-rules">RULES</p>
       </div>
       <div class="highScore-container flex-center">
-        <p>HIGHSCORE</p>
+        <p>HIGHSCORE: <span id="highScore-stat">0</span></p>
       </div>
       
     </div>

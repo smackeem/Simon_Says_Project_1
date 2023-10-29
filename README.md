@@ -11,6 +11,7 @@
 1. HTML
 2. CSS
 3. JavaScript
+4. DOM Manipulation
 
 ## Gameplay:
 1. Start: The game begins with a welcome screen and a "Start" button.
