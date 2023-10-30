@@ -42,7 +42,7 @@ body {
 }
 .game-container {
     grid-area: game;
-    background-color: midnightblue;
+    background-color: grey;
     border-radius: 50%;
 }
 .highScore-container {
@@ -80,5 +80,11 @@ body {
     background-color: yellow;
 }
 
+.highlight {
+    opacity: 1;
+}
 
+.no-highlight {
+    opacity: 0.5;
+}
 

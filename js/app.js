@@ -4,18 +4,17 @@ const INIT_STATE = {
     red: 'red',
     blue: 'blue',
     green: 'green',
-    yellow: 'yellow'
+    yellow: 'yellow',
+    level: 0,
+    highScore: 0
 };
 
 
   /*----- state variables -----*/
 let state;
 
-let pattern; //array
+let pattern =[]; //array
 let userPattern; //array
-
-let level; //integer
-let highScore;  // integer
 
 let turn; //string
 
@@ -27,6 +26,7 @@ const gameStateBtnEls = document.querySelectorAll('.start-container button');
 const highScoreEl = document.querySelector('#highScore-stat');
 //Display messages
 const gameMessageEl = document.querySelector('#game-messsage');
+const gameLevelEl = document.querySelector('#game-level');
 const gameRulesEl = document.querySelector('#game-rules');
 
   /*----- event listeners -----*/
@@ -49,8 +49,6 @@ gameStateBtnEls.forEach(function(btn){
   function init() {
     state = {...INIT_STATE};
 
-    level = 0;
-    highScore = 0;
     pattern = [];
     userPattern = [];
     turn = 'simon';
@@ -65,9 +63,16 @@ gameStateBtnEls.forEach(function(btn){
   function startGame(){
     console.log('Game About to begin')
     let colors = Object.values(INIT_STATE);
-    level = 4;
+    level = 1;
+    gameMessageEl.innerText = level;
+    highScoreEl.innerText = highScore;
     pattern.push(colorSequence(colors, level));
-    console.log(pattern)
+    for(let i = 0; i < colors.length; i++){
+            btns.forEach(function(btn){
+                blinkColor(colors[i], btn, i)
+        })
+    }
+
   }
 
   function resetGame(){
@@ -78,10 +83,27 @@ gameStateBtnEls.forEach(function(btn){
     let randomColor = colors[Math.floor(Math.random() * colors.length)];
     return randomColor;
   }
+
   function colorSequence(colors, lvl) {
     let sequence = []
     for(let i =1; i <= lvl; i++){
         sequence.push(randomColorGenerator(colors));
     }
     return sequence;
+  }
+
+  function blinkColor(color, btn, idx) {
+            setTimeout(function(){
+                if(color === btn.id){
+                    btn.classList.remove('no-highlight');
+                    btn.classList.add('highlight');
+                    setTimeout(function(){ resetBlink(btn);}, 750)
+                }
+            }, 2000 * idx)
+        }
+
+
+  function resetBlink(btn) {
+    btn.classList.remove('highlight');
+    btn.classList.add('no-highlight');
   }
