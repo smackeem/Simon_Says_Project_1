@@ -5,6 +5,7 @@ const INIT_STATE = {
   highScore: 0,
 };
 const colorsArr = ['green', 'blue', 'red', 'yellow'];
+const maxLevel = 15;
 
 /*----- state variables -----*/
 let state;
@@ -66,8 +67,9 @@ function renderStats(){
     highScoreEl.innerText = state.highScore;
 }
 
-function updateStats(stat, value){
-    state[stat] += value;
+function updateStats(){
+    state.level++;
+    state.highScore += state.level * 5
 }
 
 function startGame() {
@@ -121,7 +123,9 @@ function checkUserPattern(userCurrentPattern){
                 break;
             }
         }
-        if(isMatch){
+        if(isMatch && isWinner()){
+            congrats()
+        }else if(isMatch){
             continueGame();
         }else{
             gameOver();
@@ -130,8 +134,16 @@ function checkUserPattern(userCurrentPattern){
     
 }
 
+function isWinner(){
+    if(state.level === maxLevel) return true;
+}
+
+function congrats(){
+    console.log('Congrats');
+}
+
 function continueGame() {
-    state.level++;
+    updateStats();
     turn = 'simon';
     userPattern = [];
     runGame();

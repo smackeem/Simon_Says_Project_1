@@ -64,7 +64,7 @@
 
 10. Implement game logic for generating Simon's pattern, checking user input, and advancing levels.
 
-11. Update the game interface to reflect the current state, including level, highScore, user feedback, and colors.
+11. Update the game interface to reflect the current state, including level, highScore, and colors.
 
 12. Handle user input and game progression according to the rules of Simon Says.
 
