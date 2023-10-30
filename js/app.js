@@ -64,8 +64,24 @@ gameStateBtnEls.forEach(function(btn){
 
   function startGame(){
     console.log('Game About to begin')
+    let colors = Object.values(INIT_STATE);
+    level = 4;
+    pattern.push(colorSequence(colors, level));
+    console.log(pattern)
   }
 
   function resetGame(){
     console.log('Game got reset');
+  }
+
+  function randomColorGenerator(colors) {
+    let randomColor = colors[Math.floor(Math.random() * colors.length)];
+    return randomColor;
+  }
+  function colorSequence(colors, lvl) {
+    let sequence = []
+    for(let i =1; i <= lvl; i++){
+        sequence.push(randomColorGenerator(colors));
+    }
+    return sequence;
   }
