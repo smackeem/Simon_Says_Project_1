@@ -72,7 +72,7 @@ function updateStats(){
     state.highScore += state.level * 5
 }
 
-function startGame() {
+function startGame(e) {
   state.level = 1;
   runGame();
 }
@@ -188,4 +188,11 @@ function resetBlink(btn) {
   btn.classList.add("no-highlight");
 }
 
+function hideButton(e){
+    e.target.style.display = 'none';
+}
+
+function showButton(e){
+    e.target.style.display = 'block';
+}
 
