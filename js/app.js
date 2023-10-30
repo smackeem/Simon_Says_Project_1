@@ -142,7 +142,8 @@ function gameOver() {
 }
 
 function resetGame() {
-  console.log("Game got reset");
+  init();
+  runGame();
 }
 
 function randomColorGenerator(colors) {
