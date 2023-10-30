@@ -1,17 +1,13 @@
 
 /*----- constants -----*/
 const INIT_STATE = {
-  red: "red",
-  blue: "blue",
-  green: "green",
-  yellow: "yellow",
   level: 0,
   highScore: 0,
 };
+const colorsArr = ['green', 'blue', 'red', 'yellow'];
 
 /*----- state variables -----*/
 let state;
-let colorsArr;
 
 let currentPattern; //array of current pattern
 let patterns; //array of all patterns from current game
@@ -57,7 +53,6 @@ function init() {
   currentPattern = [];
   userPattern = [];
   turn = "simon";
-  colorsArr = Object.values(INIT_STATE);
 
   render();
 }
@@ -76,9 +71,7 @@ function updateStats(stat, value){
 }
 
 function startGame() {
-  console.log("Game About to begin");
   state.level = 1;
-  renderStats();
   runGame();
 }
 
@@ -90,19 +83,18 @@ function runGame(){
     if(turn === 'player') {
         playerSays(); 
     } 
+    render();
 }
 
 function simonSays(){
     currentPattern = colorSequence(colorsArr, state.level);
     patterns.push(currentPattern);
-    console.log(state.level)
     for (let i = 0; i < currentPattern.length; i++) {
         gameBtnEls.forEach(function (btn) {
-            blinkColor(colorsArr[i], btn, i);
+            blinkColor(currentPattern[i], btn, i);
         });
     }
     turn = 'player';
-    /* playerSays(); */
 }
 
 function playerSays() {
@@ -115,18 +107,25 @@ function playerSays() {
 function handleBtnClick(e){
     const colorID = e.target.id;
     userPattern.push(colorID);
+    blinkColor(colorID, e.target, e.target);
+    checkUserPattern(userPattern);
 }
 
 function checkUserPattern(userCurrentPattern){
-    if(userCurrentPattern.length !== currentPattern.length){
-        gameOver();
-    }else{
-        for(let i=0; i < level; i++){
+    if(userCurrentPattern.length === currentPattern.length) {
+        let isMatch = true;
+
+        for(let i=0; i < state.level; i++){
             if(userCurrentPattern[i] !== currentPattern[i]){
-                gameOver();
+                isMatch = false;
+                break;
             }
         }
-        continueGame();
+        if(isMatch){
+            continueGame();
+        }else{
+            gameOver();
+        } 
     }
     
 }
@@ -134,12 +133,14 @@ function checkUserPattern(userCurrentPattern){
 function continueGame() {
     state.level++;
     turn = 'simon';
+    userPattern = [];
     runGame();
 }
 
 function gameOver() {
     console.log('Gameover');
 }
+
 function resetGame() {
   console.log("Game got reset");
 }
@@ -166,7 +167,7 @@ function blinkColor(color, btn, idx) {
         resetBlink(btn);
       }, 750);
     }
-  }, 2000 * idx);
+  }, 1000 * idx);
 }
 
 function resetBlink(btn) {

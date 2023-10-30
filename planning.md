@@ -28,18 +28,18 @@
    3.1 Store elements like color buttons, a start button, and display messages.
 
 4. Initialize the game:
-   4.1 Initialize state variables: <!-- done  -->
-      4.1.1 Initialize the pattern array, userPattern array, level, highScore and turn. <!-- done  -->
-   4.2 Set up event listeners for buttons. <!-- done  -->
+   4.1 Initialize state variables: 
+      4.1.1 Initialize the pattern array, userPattern array, level, highScore and turn.
+   4.2 Set up event listeners for buttons. 
    4.3 Display a welcome message and provide instructions to start the game.
 
 5. Start the game when the user clicks "Start":
-   5.1 If the game is not already in progress, generate the first color pattern (e.g., add a random color to the pattern array). <!-- done  -->
+   5.1 If the game is not already in progress, generate the first color pattern (e.g., add a random color to the pattern array). 
    5.2 Begin Simon's turn:
-      5.2.1 Display the current level. <!-- done  -->
-      5.2.2 Show the color pattern to the user. <!-- done  -->
-      5.2.3 Allow Simon to complete its turn before accepting user input. <!-- done  -->
-      5.2.4 Display the user's current highScore. <!-- done -->
+      5.2.1 Display the current level. 
+      5.2.2 Show the color pattern to the user. 
+      5.2.3 Allow Simon to complete its turn before accepting user input. 
+      5.2.4 Display the user's current highScore. 
 
 6. Handle user input (color button clicks):
    6.1 When the user clicks a color button:
