@@ -8,34 +8,96 @@
     <script defer src="./js/app.js"></script>
   </head>
   <body>
-    <div class="main-grid-container">
+    <div class="page-flex-container">
+      <div class="main-flex-container">
+        <!-- Title Section -->
+        <div class="title-container flex-center">
+          <h1 class="game-title">SIMON SAYS</h1>
+        </div>
+        <!-- Game Container -->
+        <div class="game-container">
+          <div class="stats">
+            <!-- Level Display -->
+            <div class="level">
+              <h3>LEVEL: <span id="game-level"> </span></h3>
+            </div>
+            <!-- High Score -->
+            <div class="highScore-container flex-center">
+              <h3>HIGHSCORE: <span id="highScore-stat"></span></p>
+            </div>
+          </div>
 
-      <div class="title-container flex-center">
-        <h1 class="game-title">SIMON SAYS</h1>
-      </div>
-      <div class="start-container flex-center flex-wrap">
-        <button id="start-button" value="start">START</button></br>
-        <button id="restart-button" value="reset">RESTART</button>
-      </div>
-      <div class="display-messages-container flex-center ">
-        <p id="game-messsage"></p>
-        <p >LEVEL: <span id="game-level"> </span></p>
-      </div>
-      <div class="game-container flex-center">
-        <div id="game-buttons">
-            <button id="green" class="simon-button green-button no-highlight"></button>
-            <button id="blue" class="simon-button blue-button no-highlight"></button>
-            <button id="red" class="simon-button red-button no-highlight"></button>
-            <button id="yellow" class="simon-button yellow-button no-highlight"></button>
+          <!-- Game Console Container -->
+          <div class="game-console-conatiner">
+            <!-- Display Messages -->
+            <div class="display-messages-container flex-center">
+              <h2 id="game-messsage"></h2>
+            </div>
+
+            <!-- Game Console -->
+            <div class="game-console flex-center">
+              <div id="game-buttons">
+                <button
+                  id="green"
+                  class="simon-button green-button no-highlight"
+                ></button>
+                <button
+                  id="blue"
+                  class="simon-button blue-button no-highlight"
+                ></button>
+                <button
+                  id="red"
+                  class="simon-button red-button no-highlight"
+                ></button>
+                <button
+                  id="yellow"
+                  class="simon-button yellow-button no-highlight"
+                ></button>
+              </div>
+            </div>
+            <!-- Start/Restart Button -->
+            <div class="start-container flex-center flex-wrap">
+              <button id="start-button" value="start">START</button>
+            </div>
+          </div>
+          <!-- Rules Container -->
+          <div class="rules-container flex-center">
+            <div id="rule-content">
+                <h4>How to Play:</h4>
+            <ul>
+              <li>Click the "Start" button to begin game.</li>
+              <li>Simon will provide a sequence of colors.</li>
+              <li>
+                Click on the color buttons to repeat the exact sequence Simon
+                just played.
+              </li>
+            </ul>
+            <h4>Winning:</h4>
+            <ul>
+              <li>
+                If you successfully complete the pattern up to the maximum level
+                of 15, you win the game!
+              </li>
+            </ul>
+            <h4>Losing:</h4>
+            <ul>
+              <li>
+                If you make an incorrect input, you'll receive a game over
+                message.
+              </li>
+            </ul>
+            <h4>Restart</h4>
+            <ul>
+              <li>
+                At any time, you can click the "RESTART" button to start a new
+                game.
+              </li>
+            </ul>
+            </div>
+            
+          </div>
         </div>
       </div>
-      <div class="rules-container flex-center">
-        <p id="game-rules">RULES</p>
-      </div>
-      <div class="highScore-container flex-center">
-        <p>HIGHSCORE: <span id="highScore-stat">0</span></p>
-      </div>
-      
     </div>
   </body>
 </html>

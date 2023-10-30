@@ -10,67 +10,77 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: yellow;
 }
-
-.main-grid-container {
-    display: grid;
-    grid-template-columns: 10% 70% 10%;
-    grid-template-rows: 10% 10% 70% 10%;
-    grid-template-areas: 
-    ". title title ."
-    ". display display ."
-    "startmenu game game rules"
-    ". highscore highscore .";
-    height: 100vh;
+.page-flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     width: 100vw;
+    height: 100vh;
+    border: 2px solid black;
+}
+.main-flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    border: 2px solid black;
     background-color: #a2cbb6; 
 }
-.flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.title-container {
-    grid-area: title;
-}
-.display-messages-container {
-    grid-area: display;
-    align-self: flex-end;
-}
-.start-container {
-    grid-area: startmenu;
-    justify-content: right;
-}
 .game-container {
-    grid-area: game;
-    background-color: grey;
-    border-radius: 50%;
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-around;
+    align-items: center;
+    width: 800;
+    height: 80%;
+    border: 1px solid black;
 }
-.highScore-container {
-    grid-area: highscore;
-    align-self: flex-start;
-}
-.rules-container {
-    grid-area: rules;
-    justify-content: left;
+.game-console-conatiner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 800px;
+    height: 100%;
+    align-items: center;
+    border: 1px solid black;
 }
 
-.flex-wrap {
-    flex-wrap: wrap;
+.stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 50%;
+    width: 200px;
+}
+
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    width: 350px;
+    box-sizing: border-box;
+    margin: 0 15px 0 15px;
+ 
 }
 
 /* Button Styling */
+#start-button{
+    padding: 15px;
+    background-color: orange;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,1);
+}
 .simon-button { 
     padding: 30px;
     border: 2px dotted black;
     width: auto;
     height: auto;
     box-shadow: 0 5px 5px 0 rgba(0,0,0,1);
-}
-#start-button {
-    display: block;
-}
-#restart-button {
-    display: none;
 }
 .green-button {
     background-color: green;

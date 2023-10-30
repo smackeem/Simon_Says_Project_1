@@ -1,10 +1,9 @@
-
 /*----- constants -----*/
 const INIT_STATE = {
-  level: 0,
+  level: 1,
   highScore: 0,
 };
-const colorsArr = ['green', 'blue', 'red', 'yellow'];
+const colorsArr = ["green", "blue", "red", "yellow"];
 const maxLevel = 15;
 
 /*----- state variables -----*/
@@ -20,7 +19,7 @@ let turn; //string
 
 //Buttons
 const gameBtnEls = document.querySelectorAll("#game-buttons button");
-const gameStateBtnEls = document.querySelectorAll(".start-container button");
+const gameStateBtnEl = document.querySelector("#start-button");
 
 //Highscore tracker
 const highScoreEl = document.querySelector("#highScore-stat");
@@ -31,19 +30,11 @@ const gameLevelEl = document.querySelector("#game-level");
 const gameRulesEl = document.querySelector("#game-rules");
 
 /*----- event listeners -----*/
-
-gameStateBtnEls.forEach(function (btn) {
-  if (btn.value === "start") {
-    btn.addEventListener("click", startGame);
-  }
-  if (btn.value === "reset") {
-    btn.addEventListener("click", resetGame);
-  }
-});
+gameStateBtnEl.addEventListener("click", startGame);
 
 /*----- functions -----*/
 
-init();
+/* init(); */
 
 /*----- function declarations -----*/
 
@@ -59,103 +50,103 @@ function init() {
 }
 
 function render() {
-    renderStats();
+  renderStats();
 }
 
-function renderStats(){
-    gameLevelEl.innerText = state.level;
-    highScoreEl.innerText = state.highScore;
+function renderStats() {
+  gameLevelEl.innerText = state.level;
+  highScoreEl.innerText = state.highScore;
+  gameMessageEl.innerText = '';
 }
 
-function updateStats(){
-    state.level++;
-    state.highScore += state.level * 5
+function updateStats() {
+  state.level++;
+  state.highScore += state.level * 5;
 }
 
 function startGame(e) {
-  state.level = 1;
-  runGame();
+  init();
+  changeButton(e);
+  setTimeout(runGame, 1000);
 }
 
-function runGame(){
-    if(turn === 'simon') 
-    {
-        simonSays();
-    }
-    if(turn === 'player') {
-        playerSays(); 
-    } 
-    render();
+function runGame() {
+  if (turn === "simon") {
+    displayMessage("Simon's Turn!");
+    simonSays();
+  }
+  if (turn === "player") {
+    displayMessage("Your Turn!");
+    playerSays();
+  }
+  render();
 }
 
-function simonSays(){
-    currentPattern = colorSequence(colorsArr, state.level);
-    patterns.push(currentPattern);
-    for (let i = 0; i < currentPattern.length; i++) {
-        gameBtnEls.forEach(function (btn) {
-            blinkColor(currentPattern[i], btn, i);
-        });
-    }
-    turn = 'player';
+function simonSays() {
+  currentPattern = colorSequence(colorsArr, state.level);
+  patterns.push(currentPattern);
+  for (let i = 0; i < currentPattern.length; i++) {
+    gameBtnEls.forEach(function (btn) {
+      blinkColor(currentPattern[i], btn, i);
+    });
+  }
+  turn = "player";
 }
 
 function playerSays() {
-    gameBtnEls.forEach(function(btn) {
-        btn.addEventListener('click', handleBtnClick)
-    })
-    checkUserPattern(userPattern);
+  gameBtnEls.forEach(function (btn) {
+    btn.addEventListener("click", handleBtnClick);
+  });
 }
 
-function handleBtnClick(e){
-    const colorID = e.target.id;
-    userPattern.push(colorID);
-    blinkColor(colorID, e.target, e.target);
-    checkUserPattern(userPattern);
+function handleBtnClick(e) {
+  const colorID = e.target.id;
+  userPattern.push(colorID);
+  blinkColor(colorID, e.target);
+  checkUserPattern(userPattern);
 }
 
-function checkUserPattern(userCurrentPattern){
-    if(userCurrentPattern.length === currentPattern.length) {
-        let isMatch = true;
+function checkUserPattern(userCurrentPattern) {
+  if (userCurrentPattern.length === currentPattern.length) {
+    let isMatch = true;
 
-        for(let i=0; i < state.level; i++){
-            if(userCurrentPattern[i] !== currentPattern[i]){
-                isMatch = false;
-                break;
-            }
-        }
-        if(isMatch && isWinner()){
-            congrats()
-        }else if(isMatch){
-            continueGame();
-        }else{
-            gameOver();
-        } 
+    for (let i = 0; i < state.level; i++) {
+      if (userCurrentPattern[i] !== currentPattern[i]) {
+        isMatch = false;
+        break;
+      }
     }
-    
+    if (isMatch && isWinner()) {
+      congrats();
+    } else if (isMatch) {
+      continueGame();
+    } else {
+      gameOver();
+    }
+  }
 }
 
-function isWinner(){
-    if(state.level === maxLevel) return true;
+function isWinner() {
+  if (state.level === maxLevel) return true;
 }
 
-function congrats(){
-    console.log('Congrats');
+function congrats() {
+  displayMessage("Congrats! You made it to Level: "+ state.level + "! Your High Score is: "+ state.highScore);
 }
 
 function continueGame() {
-    updateStats();
-    turn = 'simon';
-    userPattern = [];
-    runGame();
+  updateStats();
+  turn = "simon";
+  userPattern = [];
+  runGame();
 }
 
 function gameOver() {
-    console.log('Gameover');
+  displayMessage("Gameover");
 }
 
-function resetGame() {
-  init();
-  runGame();
+function displayMessage(message){
+    gameMessageEl.innerText = message;
 }
 
 function randomColorGenerator(colors) {
@@ -188,11 +179,7 @@ function resetBlink(btn) {
   btn.classList.add("no-highlight");
 }
 
-function hideButton(e){
-    e.target.style.display = 'none';
-}
-
-function showButton(e){
-    e.target.style.display = 'block';
+function changeButton(e) {
+  e.target.innerText = "RESTART";
 }
 
