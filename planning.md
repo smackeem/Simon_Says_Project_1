@@ -39,7 +39,7 @@
       5.2.1 Display the current level. <!-- done  -->
       5.2.2 Show the color pattern to the user. <!-- done  -->
       5.2.3 Allow Simon to complete its turn before accepting user input. <!-- done  -->
-      5.2.4 Display the user's current highScore.
+      5.2.4 Display the user's current highScore. <!-- done -->
 
 6. Handle user input (color button clicks):
    6.1 When the user clicks a color button:
