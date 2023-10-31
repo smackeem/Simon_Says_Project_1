@@ -4,7 +4,7 @@ const INIT_STATE = {
   highScore: 0,
 };
 const colorsArr = ["green", "blue", "red", "yellow"];
-const maxLevel = 15;
+const maxLevel = 2;
 
 /*----- state variables -----*/
 let state;
@@ -134,7 +134,7 @@ function isWinner() {
 }
 
 function congrats() {
-  displayMessage("Congrats! You made it to Level: "+ state.level + "! Your High Score is: "+ state.highScore);
+  displayMessage("CONGRATS! Exceptional memory.");
 }
 
 function continueGame() {
@@ -145,7 +145,7 @@ function continueGame() {
 }
 
 function gameOver() {
-  displayMessage("Gameover");
+  displayMessage("GAMEOVER");
 }
 
 function displayMessage(message){
@@ -168,7 +168,7 @@ function colorSequence(colors, lvl) {
 function blinkColor(color, btn, idx) {
   setTimeout(function () {
     if (color === btn.id) {
-       // addAudio(color);
+        addAudio(color);
       btn.classList.remove("no-highlight");
       btn.classList.add("highlight");
       setTimeout(function () {
