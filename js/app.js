@@ -21,6 +21,9 @@ let turn; //string
 const gameBtnEls = document.querySelectorAll("#game-buttons button");
 const gameStateBtnEl = document.querySelector("#start-button");
 
+//Audio
+const audioEls = document.querySelectorAll('audio');
+
 //Highscore tracker
 const highScoreEl = document.querySelector("#highScore-stat");
 
@@ -138,7 +141,7 @@ function continueGame() {
   updateStats();
   turn = "simon";
   userPattern = [];
-  runGame();
+  setTimeout(runGame, 1500);
 }
 
 function gameOver() {
@@ -165,6 +168,7 @@ function colorSequence(colors, lvl) {
 function blinkColor(color, btn, idx) {
   setTimeout(function () {
     if (color === btn.id) {
+       // addAudio(color);
       btn.classList.remove("no-highlight");
       btn.classList.add("highlight");
       setTimeout(function () {
@@ -183,3 +187,17 @@ function changeButton(e) {
   e.target.innerText = "RESTART";
 }
 
+function addAudio(color){
+    audioEls.forEach(function(audio) {
+        if(color === audio.className){
+            playAudio(audio);
+        }
+    });
+}
+
+function playAudio(audio){
+    if(audio){
+        audio.currentTime = 0;
+        audio.play();
+    }
+}
