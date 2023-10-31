@@ -18,7 +18,9 @@ body {
     background-color: var(--main-bg-color);
     font-family: var(--body-font);
 }
-
+h2 {
+    margin-left: 20px;
+}
 li {
     margin: 20px 0px;
     letter-spacing: 2px;
@@ -73,21 +75,23 @@ li {
 .rules-container {
     width: 350px;
     height: 100%;
-    box-sizing: border-box;
     margin: 0 15px 0 15px;
-    align-items: center;
 }
 .game-title {
     font-family: var(--game-title-font);
     font-size: 50px;
     letter-spacing: 5px;
+    margin-right: 140px;
 }
 
 #rule-content {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     overflow: auto;
     font-family: var(--sub-titles-font);
     font-size: 15px;
+    justify-content: center;
 }
 
 /* Button Styling */
