@@ -132,9 +132,15 @@ function isWinner() {
 }
 
 function congrats() {
+    removeBtnListeners();
   displayMessage("CONGRATS! Exceptional memory.");
   setTimeout(function(){
     addAudio('winner');}, 1000);
+}
+function removeBtnListeners(){
+    gameBtnEls.forEach(function (btn) {
+        btn.removeEventListener("click", handleBtnClick);
+      });
 }
 
 function continueGame() {
@@ -145,6 +151,7 @@ function continueGame() {
 }
 
 function gameOver() {
+    removeBtnListeners();
   displayMessage("GAMEOVER");
   setTimeout(function(){
     addAudio('gameover');}, 1000);
