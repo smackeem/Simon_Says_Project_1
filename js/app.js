@@ -75,11 +75,9 @@ function startGame(e) {
 
 function runGame() {
   if (turn === "simon") {
-    displayMessage("Simon's Turn!");
     simonSays();
   }
   if (turn === "player") {
-    displayMessage("Your Turn!");
     playerSays();
   }
   render();
@@ -184,7 +182,7 @@ function resetBlink(btn) {
 }
 
 function changeButton(e) {
-  e.target.innerText = "RESTART";
+  if(e.target.innerText ==="START") e.target.innerText = "RESTART";
 }
 
 function addAudio(color){

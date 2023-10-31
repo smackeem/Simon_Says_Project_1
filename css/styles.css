@@ -97,12 +97,18 @@ li{
 }
 
 /* Button Styling */
+button {
+    top: 50%;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,1);
+    border: none;
+}
+
 #game-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     min-height: 100%;
-    gap: 5px;
+    gap: 6px;
     justify-content: space-between;
     align-content: start;
 }
@@ -113,8 +119,7 @@ li{
     justify-self: center;
     align-self: center;
     padding: 15px;
-    background-color: orange;
-    box-shadow: 0 5px 5px 0 rgba(0,0,0,1);
+    background-color: orange; 
     font-family: var(--body-font);
     font-size: 18px;
     letter-spacing: 5px;
@@ -122,8 +127,7 @@ li{
 .simon-button { 
     padding: 80px;
     width: 150px;
-    height: 150px;
-    box-shadow: 0 5px 5px 0 rgba(0,0,0,1);
+    height: 150px;   
 }
 .green-button {
     background-color: green;
