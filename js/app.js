@@ -133,6 +133,8 @@ function isWinner() {
 
 function congrats() {
   displayMessage("CONGRATS! Exceptional memory.");
+  let winnerAduio = audioEls.find((audEl) => audEl.className === 'winner'); 
+  playAudio(winnerAudio);
 }
 
 function continueGame() {
@@ -144,6 +146,8 @@ function continueGame() {
 
 function gameOver() {
   displayMessage("GAMEOVER");
+  let loserAduio = audioEls.find((audEl) => audEl.className === 'gameover'); 
+  playAudio(loserAduio);
 }
 
 function displayMessage(message){
