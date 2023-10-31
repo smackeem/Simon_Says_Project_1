@@ -18,7 +18,7 @@ let turn; //string
 /*----- cached elements  -----*/
 
 //Buttons
-const gameBtnEls = document.querySelectorAll("#game-buttons button");
+const gameBtnEls = document.querySelectorAll(".simon-button");
 const gameStateBtnEl = document.querySelector("#start-button");
 
 //Audio

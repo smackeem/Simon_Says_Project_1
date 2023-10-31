@@ -48,12 +48,12 @@ span {
     box-shadow: 3px 3px red, -1em 0 .4em green;
 }
 
-.game-console-conatiner {
+#game-console-conatiner {
     width: 800px;
     height: 100%;
     box-shadow: 3px 3px orange, -1em 0 .4em olive;
+    justify-content: space-evenly;
 }
-
 .stats {
     height: 50%;
     width: 1fr;
@@ -101,6 +101,7 @@ button {
     top: 50%;
     box-shadow: 0 5px 5px 0 rgba(0,0,0,1);
     border: none;
+    border-style: outset;
 }
 
 #game-buttons {
@@ -112,6 +113,7 @@ button {
     justify-content: space-between;
     align-content: start;
 }
+
 #start-button{
     grid-column: 1 / span 2;
     grid-row: 1 / span 2;
@@ -126,8 +128,8 @@ button {
 }
 .simon-button { 
     padding: 80px;
-    width: 150px;
-    height: 150px;   
+    width: 200px;
+    height: 200px;   
 }
 .green-button {
     background-color: green;
