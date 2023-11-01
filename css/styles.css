@@ -58,7 +58,7 @@ span {
 .stats {
     height: 50%;
     letter-spacing: 2px;
-    width: 12em;
+    width: 13em;
 }
 
 .flex-column-around {
@@ -90,6 +90,9 @@ span {
     overflow: auto;
     font-family: var(--sub-titles-font);
     justify-content: center;
+}
+#sound {
+    margin-top: 50px;
 }
 
 #hide-button-container {
