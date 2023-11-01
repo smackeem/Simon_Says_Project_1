@@ -75,6 +75,7 @@ function updateStats() {
 }
 
 function startGame(e) {
+    animateBtn(e);
   init();
   changeButton(e);
   setTimeout(runGame, 1000);
@@ -226,7 +227,8 @@ function playAudio(audio) {
   }
 }
 
-function toggleSound() {
+function toggleSound(e) {
+    animateBtn(e);
   audioEls.forEach(function (audio) {
     if (audio.muted) {
       audio.muted = false;
@@ -238,11 +240,11 @@ function toggleSound() {
   });
 }
 
-function hideRules() {
+function hideRules(e) {
+    animateBtn(e);
   const rulesCntr = document.querySelector(".rules-container ");
   const rulesEl = document.querySelector("#rule-content");
   const hideMess = document.querySelector("#hide");
-  console.log(rulesCntr);
   if (rulesEl.style.display === "none") {
     rulesEl.style.display = "block";
     rulesCntr.style.width = "300px";
@@ -252,4 +254,11 @@ function hideRules() {
     rulesCntr.style.width = "auto";
     hideMess.innerText = "SHOW RULES";
   }
+}
+
+function animateBtn(e){
+    e.target.classList.add("animated");
+      setTimeout(() => {
+        e.target.classList.remove("animated");
+      }, 300);
 }

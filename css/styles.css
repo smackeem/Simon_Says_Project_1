@@ -20,6 +20,7 @@ body {
 
 h2 {
     margin-left: 20px;
+    text-align: center;
 }
 
 li {
@@ -106,6 +107,7 @@ button {
     border: none;
     border-style: outset;
     font-family: var(--body-font);
+    cursor: pointer;
 }
 
 #game-buttons {
@@ -176,3 +178,16 @@ button {
 .no-highlight {
     opacity: 0.5;
 }
+
+.animated {
+    animation: buttonAnimation 0.5s alternate infinite;
+  }
+  
+@keyframes buttonAnimation {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-5px);
+    }
+  }
