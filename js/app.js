@@ -4,7 +4,7 @@ const INIT_STATE = {
   highScore: 0,
 };
 const colorsArr = ["green", "blue", "red", "yellow"];
-const maxLevel = 2;
+const maxLevel = 5;
 
 /*----- state variables -----*/
 let state;
@@ -14,17 +14,18 @@ let patterns; //array of all patterns from current game
 let userPattern; //array of user input
 
 let turn; //string
-
+let increaseLvl;
 /*----- cached elements  -----*/
 
 //Buttons
 const gameBtnEls = document.querySelectorAll(".simon-button");
 const gameStateBtnEl = document.querySelector("#start-button");
 const soundBtnEl = document.querySelector(".toggle");
+const hideBtnEl = document.querySelector("#hide-rules");
 
 //Audio
 const audioEls = document.querySelectorAll("audio");
-console.log(audioEls)
+
 //Highscore tracker
 const highScoreEl = document.querySelector("#highScore-stat");
 
@@ -37,9 +38,11 @@ const toggle = document.querySelector("#toggle");
 /*----- event listeners -----*/
 gameStateBtnEl.addEventListener("click", startGame);
 soundBtnEl.addEventListener("click", toggleSound);
+hideBtnEl.addEventListener("click", hideRules);
+
 /*----- functions -----*/
 audioEls.forEach(function (audio) {
-    audio.muted = true;
+  audio.muted = true;
 });
 
 /*----- function declarations -----*/
@@ -51,7 +54,7 @@ function init() {
   currentPattern = [];
   userPattern = [];
   turn = "simon";
-
+  increaseLvl = true;
   render();
 }
 
@@ -62,12 +65,13 @@ function render() {
 function renderStats() {
   gameLevelEl.innerText = state.level;
   highScoreEl.innerText = state.highScore;
-  gameMessageEl.innerText = "";
+  gameMessageEl.innerText =
+    "Is your memory on par with a computer's hard drive, or does it often run out of storage?";
 }
 
 function updateStats() {
-  state.level++;
   state.highScore += state.level * 5;
+  if (increaseLvl) state.level++;
 }
 
 function startGame(e) {
@@ -121,10 +125,12 @@ function checkUserPattern(userCurrentPattern) {
       }
     }
     if (isMatch && isWinner()) {
+      increaseLvl = false;
       congrats();
     } else if (isMatch) {
       continueGame();
     } else {
+      increaseLvl = false;
       gameOver();
     }
   }
@@ -135,6 +141,8 @@ function isWinner() {
 }
 
 function congrats() {
+  updateStats();
+  render();
   removeBtnListeners();
   displayMessage("CONGRATS! Exceptional memory.");
   setTimeout(function () {
@@ -228,4 +236,20 @@ function toggleSound() {
       toggle.innerText = "OFF";
     }
   });
+}
+
+function hideRules() {
+  const rulesCntr = document.querySelector(".rules-container ");
+  const rulesEl = document.querySelector("#rule-content");
+  const hideMess = document.querySelector("#hide");
+  console.log(rulesCntr);
+  if (rulesEl.style.display === "none") {
+    rulesEl.style.display = "block";
+    rulesCntr.style.width = "300px";
+    hideMess.innerText = "HIDE RULES";
+  } else {
+    rulesEl.style.display = "none";
+    rulesCntr.style.width = "auto";
+    hideMess.innerText = "SHOW RULES";
+  }
 }
