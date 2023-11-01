@@ -20,10 +20,11 @@ let turn; //string
 //Buttons
 const gameBtnEls = document.querySelectorAll(".simon-button");
 const gameStateBtnEl = document.querySelector("#start-button");
+const soundBtnEl = document.querySelector(".toggle");
 
 //Audio
-const audioEls = document.querySelectorAll('audio');
-
+const audioEls = document.querySelectorAll("audio");
+console.log(audioEls)
 //Highscore tracker
 const highScoreEl = document.querySelector("#highScore-stat");
 
@@ -31,13 +32,15 @@ const highScoreEl = document.querySelector("#highScore-stat");
 const gameMessageEl = document.querySelector("#game-messsage");
 const gameLevelEl = document.querySelector("#game-level");
 const gameRulesEl = document.querySelector("#game-rules");
+const toggle = document.querySelector("#toggle");
 
 /*----- event listeners -----*/
 gameStateBtnEl.addEventListener("click", startGame);
-
+soundBtnEl.addEventListener("click", toggleSound);
 /*----- functions -----*/
-
-/* init(); */
+audioEls.forEach(function (audio) {
+    audio.muted = true;
+});
 
 /*----- function declarations -----*/
 
@@ -59,7 +62,7 @@ function render() {
 function renderStats() {
   gameLevelEl.innerText = state.level;
   highScoreEl.innerText = state.highScore;
-  gameMessageEl.innerText = '';
+  gameMessageEl.innerText = "";
 }
 
 function updateStats() {
@@ -132,15 +135,16 @@ function isWinner() {
 }
 
 function congrats() {
-    removeBtnListeners();
+  removeBtnListeners();
   displayMessage("CONGRATS! Exceptional memory.");
-  setTimeout(function(){
-    addAudio('winner');}, 1000);
+  setTimeout(function () {
+    addAudio("winner");
+  }, 1000);
 }
-function removeBtnListeners(){
-    gameBtnEls.forEach(function (btn) {
-        btn.removeEventListener("click", handleBtnClick);
-      });
+function removeBtnListeners() {
+  gameBtnEls.forEach(function (btn) {
+    btn.removeEventListener("click", handleBtnClick);
+  });
 }
 
 function continueGame() {
@@ -151,14 +155,15 @@ function continueGame() {
 }
 
 function gameOver() {
-    removeBtnListeners();
+  removeBtnListeners();
   displayMessage("GAMEOVER");
-  setTimeout(function(){
-    addAudio('gameover');}, 1000);
+  setTimeout(function () {
+    addAudio("gameover");
+  }, 1000);
 }
 
-function displayMessage(message){
-    gameMessageEl.innerText = message;
+function displayMessage(message) {
+  gameMessageEl.innerText = message;
 }
 
 function randomColorGenerator(colors) {
@@ -177,7 +182,7 @@ function colorSequence(colors, lvl) {
 function blinkColor(color, btn, idx) {
   setTimeout(function () {
     if (color === btn.id) {
-        addAudio(color);
+      addAudio(color);
       btn.classList.remove("no-highlight");
       btn.classList.add("highlight");
       setTimeout(function () {
@@ -193,20 +198,34 @@ function resetBlink(btn) {
 }
 
 function changeButton(e) {
-  if(e.target.innerText ==="START") e.target.innerText = "RESTART";
+  if (e.target.innerText === "START") e.target.innerText = "RESTART";
 }
 
-function addAudio(color){
-    audioEls.forEach(function(audio) {
-        if(color === audio.className){
-            playAudio(audio);
-        }
-    });
-}
-
-function playAudio(audio){
-    if(audio){
-        audio.currentTime = 0;
-        audio.play();
+function addAudio(color) {
+  audioEls.forEach(function (audio) {
+    if (!audio.muted) {
+      if (color === audio.className) {
+        playAudio(audio);
+      }
     }
+  });
+}
+
+function playAudio(audio) {
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play();
+  }
+}
+
+function toggleSound() {
+  audioEls.forEach(function (audio) {
+    if (audio.muted) {
+      audio.muted = false;
+      toggle.innerText = "ON";
+    } else {
+      audio.muted = true;
+      toggle.innerText = "OFF";
+    }
+  });
 }
