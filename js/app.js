@@ -4,7 +4,7 @@ const INIT_STATE = {
   highScore: 0,
 };
 const colorsArr = ["green", "blue", "red", "yellow"];
-const maxLevel = 15;
+const maxLevel = 1;
 
 /*----- state variables -----*/
 let state;

@@ -5,7 +5,10 @@
 ## Objective: The objective of the game is to repeat the sequences of colors as accurately as possibly to advance to higher levels.
 
 ## Screenshots:
----TO BE ADDED---
+1. [](./assets/gameplay-screenshot-1.png)
+2. [](./assets/gameplay-screenshot-2.png)
+3. [](./assets/gameplay-screenshot-3.png)
+4. [](./assets/gameplay-screenshot-4.png)
 
 ## Technologies used: 
 1. HTML
