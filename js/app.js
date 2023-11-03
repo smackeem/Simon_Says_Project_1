@@ -4,19 +4,17 @@ const INIT_STATE = {
   highScore: 0,
 };
 const colorsArr = ["green", "blue", "red", "yellow"];
-const maxLevel = 1;
+const maxLevel = 3;
 
 /*----- state variables -----*/
 let state;
-
 let currentPattern; //array of current pattern
 let patterns; //array of all patterns from current game
 let userPattern; //array of user input
-
 let turn; //string
 let increaseLvl;
-/*----- cached elements  -----*/
 
+/*----- cached elements  -----*/
 //Buttons
 const gameBtnEls = document.querySelectorAll(".simon-button");
 const gameStateBtnEl = document.querySelector("#start-button");
@@ -40,13 +38,12 @@ gameStateBtnEl.addEventListener("click", startGame);
 soundBtnEl.addEventListener("click", toggleSound);
 hideBtnEl.addEventListener("click", hideRules);
 
-/*----- functions -----*/
+/*----- Mute audio -----*/
 audioEls.forEach(function (audio) {
   audio.muted = true;
 });
 
 /*----- function declarations -----*/
-
 function init() {
   state = { ...INIT_STATE };
 
@@ -150,6 +147,7 @@ function congrats() {
     addAudio("winner");
   }, 1000);
 }
+
 function removeBtnListeners() {
   gameBtnEls.forEach(function (btn) {
     btn.removeEventListener("click", handleBtnClick);
